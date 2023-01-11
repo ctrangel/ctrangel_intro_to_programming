@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CMPS 162: Module 1 Programming Project</title>
+<style>* { font-family: monospace; }</style>
+<script>
+
+// NOTE: You can enter both code and explanations. For an explanation, start
+//       the line with '//' which indicates a comment.
+
+// NOTE: console.log prints text to the browser console that you can enable
+//       to see the output. It is a little bit more convenient than alert so
+//       we will use it most of the time.
+
+
+
+//-----------//
+// Variables //
+//-----------//
+console.log("Variables");
+
+// 1. Create a string variable called 'name' and store your name in it.
+var name = "Christian Rangel";
+
+// 2. Write code to alert your name in the browser.
+alert(name);
+
+// 3. Create two number variables name 'first' and 'second'. Assign 13 to
+//    first and 26 to second. Alert the sum of the two variables in the browser.
+var first = 13;
+var second = 26;
+alert(first + second);
+
+//--------//
+// Values //
+//--------//
+console.log("Values");
+
+// 1. Define a variable 'string_variable' and a variable 'number_variable'.
+//    Assign "10" to the string variable and 99 to the number variable.
+//    Alert the value of string_variable plus number_variable (use the +
+//    operator). Can you explain what happened?
+var string_variable = "10";
+var number_variable = 99;
+alert(string_variable + number_variable);
+// you can't use a math operator to add together an int with a string. It'll just concatonate them togehter into a number string. 
+// with this it displays "1099"
+
+
+//-------------//
+// Expressions //
+//-------------//
+console.log("Expressions");
+
+// 1. Explain what the result of 13 % 5 will be.
+// That would return a number 3. The remainder operator returns the remainder left over when you divide them.
+
+// 2. What will be printed to the console after executing the following 3
+//    lines? Why?
+var num = 3;
+console.log(num++);
+console.log(++num);
+// It would displays 3 & 5
+// the first displays the num 3 and then increments the variable with the postfix ++ by one.
+// now the variable num is 4 but with the prefix ++ the variable is incremented by one again so after that
+// it displays the num which is now 5.
+
+// 3. Remove the ambiguity from the following line but keep the result
+//    exactly the same.
+console.log((2 * 3) + 3 - (4 / 3));
+
+
+
+</script>
+</head>
+<body>
+  See console!
+</body>
+</html>
