@@ -1,0 +1,148 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>CMPS 162: Module 3 Programming Project</title>
+    <style>
+        * {
+            font-family: monospace;
+        }
+    </style>
+    <script>
+
+//---------//
+// Strings //
+//---------//
+console.log("Strings");
+
+// 1. Make all countries in the following array follow the same formatting:
+//    The first letter should be upper case, the rest lower case. Print the
+//    result to the console.
+
+var countries = ["AustraliA", "greece", "PERU", "ChInA"];
+var countriesFixed = [];
+// for loop to iterate through the elements
+for (let i = 0; i < countries.length; i++) {      
+    // I defined the three variables to get the first letters and the rest of the string characters
+    // used the case methods on them and then put them back together in the ele variable  
+    let firstLetter = countries[i][0].toUpperCase();
+    let str = countries[i].slice(1).toLowerCase();
+    let ele = firstLetter + str;
+    //Then just push the corrected elements into the new array
+    countriesFixed.push(ele);
+    
+}
+// display them
+console.log(countriesFixed);
+  
+
+
+// 2. Get every second and third letter from each country and concatenate them.
+//    Print the results to the console.
+//declaring empty arr
+var countryChars = []
+//looping through countries array
+for (let i = 0; i < countries.length; i ++) {
+    //Push every second and third char into an arr
+    countryChars.push(countries[i].charAt(1) + countries[i].charAt(2));
+    // console.log(countryChars);
+    //concatenate all chars into one string 
+    //I converted the string to lowercase to make it look nicer
+    var charString = countryChars.join("").toLowerCase();
+
+}
+console.log(charString);
+// 3. In the sentence below replace 'dart' with 'arrow' by using the indexOf
+//    and slice functions.
+
+var sentence = "Time flies like an dart; fruit flies like a banana.";
+var indx = sentence.indexOf("dart"); // get index of dart
+var s1 = sentence.slice(0, indx);// first half of the sentece
+var s2 = sentence.slice(indx + 4, sentence.length - 1);//second half
+var s3 = s1 + "arrow" + s2;// concatenate them together and insert arrow inbetween
+console.log(s3);
+
+// 4. Find the index of the last occurrence of flies in sentence.
+var lastFlies = sentence.lastIndexOf("flies");
+console.log(lastFlies);
+// 5. Prompt the user for a string, reverse it, and show the result to the user.
+var userString = prompt("Insert string here");
+var revString = "";
+
+for (let i = userString.length - 1; i >= 0; i--) {
+    revString += userString[i];
+    // console.log(revString);
+
+}
+alert("here is your new string: " + revString);
+console.log(revString);
+
+//---------//
+// Numbers //
+//---------//
+console.log("Numbers");
+
+// Use the following variable to answer the next questions.
+
+var value = 13.3;
+
+// 1. Round the value using normal math rules.
+var a = Math.round(value);
+console.log(a);
+// 2. Round the value up.
+var up = Math.ceil(value);
+console.log(up);
+// 3. Round the value down.
+var down = Math.floor(value);
+console.log(down);
+// 4. Simulate a coin flip by generating a random number. Assume the coin is
+//    fair and print the result, heads or tails, to the console.
+var num = Math.random();
+var coin = Math.round(num);
+if (coin > 0) {
+    console.log("Heads");
+} else {
+    console.log("Tails");
+}
+
+
+//-------//
+// Dates //
+//-------//
+console.log("Dates");
+
+// 1. Prompt the user for their age and proceed to show in what year they
+//    were born (you can assume they already had their birthday in the current
+//    year).
+var userAge = prompt("cuantos años tienes?")
+console.log(userAge);
+
+// 2. Make a program that does the following: (1) Use a prompt to obtain the
+//    birth year of the user. (2) Use a prompt to obtain the birth month of
+//    the user. (3) Use a prompt to obtain the birth day of the user.
+//    (4) Calculate how old the user is in days. (5) Show the result to
+//    the user.
+
+var uBirthYear = prompt("Birth Year"); //user prompts
+var uMonth = prompt("Month");
+var uDay = prompt("Day");
+var currentTime = new Date(); //current time set to variable
+var userBD = new Date(uBirthYear, uMonth - 1, uDay); //dob filled out by prompts
+var calc = currentTime - userBD;  
+var days = Math.floor(calc / (1000 * 60 * 60 * 24)); // math to convert to days
+// console.log(currentTime);
+// console.log(userBD);
+// console.log(calc);
+alert("You happen to be " + days + " days old")
+console.log(days);
+
+
+    </script>
+</head>
+
+<body>
+    See console!
+</body>
+
+</html>
