@@ -1,0 +1,221 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CMPS 162: Module 4 Programming Project</title>
+<style>* { font-family: monospace; }</style>
+<script>
+
+//-----------//
+// Functions //
+//-----------//
+console.log("Functions");
+
+// 1. Write a function named 'greet' that greets the user. The greeting should appear
+//    in an alert or logged to the console. Make sure that you call it as well.
+function greet() {
+  console.log("Greetings user");
+}
+greet();
+
+//
+
+let num1 = 5;
+let num2 = 7;
+
+// 2. a. Write a function named 'sumAndPrint' that takes two numbers as parameters,
+//    adds them together, and logs the result to the console.
+//    b. Call the function passing in num1 and num2. 
+function sumAndPrint(num1, num2) {
+  let result = num1 + num2;
+  console.log(result);
+}
+sumAndPrint(num1, num2);
+sumAndPrint(1, 2);
+sumAndPrint(8, 12);
+sumAndPrint(52, 78);
+// 3. a. Write a function named 'sum' that takes two numbers as parameters,
+//    adds them together, and returns the result. 
+//    b. Set the default value of both numbers to 0.
+//    c. Call the function and log the result to the console.
+function sum(num1, num2) {
+  return num1 + num2;
+}
+num1 = 0;
+num2 = 0;
+console.log(sum(num1, num2));
+console.log(sum(5, 10));
+console.log(sum(789, 233));
+
+
+
+// 4. a. create a variable that contains an array of at least six different integers. 
+//    b. Log your array variable to the console. 
+//    c. Write a function named 'findSmallest' that finds the smallest number in
+//    an array and returns the result. For example, the answer for [23, 54, 3, 6, 4, 46] 
+//    should be the number 3. Note that the function should take an array as input data.
+//    d. Call the function passing in the array you created in step 4.a and log the result 
+//    to the console. 
+let numsArray = [72, 84, 55, 2, 5, 34]
+console.log(numsArray);
+
+function findSmallest(arr) {
+  let array = arr;
+  let smolNum = array[0];
+  for (let i = 0; i < arr.length; i++) {
+    if (array[i] < smolNum) {
+      smolNum = array[i];
+    } else if (array[i] > smolNum) {
+      smolNum = smolNum;
+    } else {
+      smolNum = array[i];
+    }
+    
+  }
+  return smolNum;
+}
+console.log(findSmallest(numsArray));
+
+
+// 5. a. create a variable that contains an array of at least six elements. 
+//    b. Log your array variable to the console. 
+//    c. Write a function named 'everySecondElement' that takes as
+//    input an array and returns every second element in a new array. For
+//    example, everySecondElement([1, 2, 3, 4, 5, 6]) should return [2, 4, 6].
+//    Hint: one solution uses the % operator.
+//    d. Call the function passing in the array you created in step 5.a and log the result.
+let lettersArray = ["a", "b", "c", "d", "e", "f"];
+console.log(lettersArray);
+
+function everySecondElement(arr) {
+  let array = arr;
+  let secondEleArr = [];
+  
+  for (let i = 0; i < array.length; i++) {
+    let indx = array.indexOf(array[i]);
+    //every second element has a prime index so if prime, push to new array
+    if (indx % 2 != 0) { 
+      secondEleArr.push(array[i]);
+    } 
+    // console.log(secondEleArr);
+  }
+  return secondEleArr;
+}
+console.log(everySecondElement(lettersArray));
+
+//--------//
+// Switch //
+//--------//
+console.log("Switch");
+
+// 1. a. Create an empty variable called thisMonth.
+//    b. Using JavaScript's buitl-in Date object, set the thisMonth variable to the current month's 
+//    numerical value. 
+//        Note: Find the Date object methods at https://www.w3schools.com/jsref/jsref_obj_date.asp
+//        Note: Step a and step b can actually be combined into a single expression.
+//    c. Code a JavaScript switch statement that accepts the thisMonth variable as the argument. The 
+//    case statements should log the name of the month to the console.
+//        e.g., if the thisMonth variable contains the number 1, then the word 'February' should be 
+//        logged to the console. 
+let thisMonth;
+let date = new Date();
+thisMonth = date.getMonth();
+// console.log(thisMonth);
+switch(thisMonth) {
+  case 0 :
+    console.log("January");
+    break;
+  case 1:
+    console.log("February");
+    break;
+  case 2:
+    console.log("March");
+    break;
+  case 3:
+    console.log("April");
+    break;
+  case 4:
+    console.log("May");
+    break;
+  case 5:
+    console.log("June");
+    break;
+  case 6:
+    console.log("July");
+    break;
+  case 7:
+    console.log("August");
+    break;
+  case 8:
+    console.log("September");
+    break;
+  case 9:
+    console.log("October");
+    break;
+  case 10:
+    console.log("November");
+    break;
+  case 11:
+    console.log("December");
+    break;
+}
+
+//-------//
+// While //
+//-------//
+function factorial_for(n) {
+  var total = 1;
+  for (var i = 1; i <= n; i++) {
+    total *= i;
+  }
+  return total;
+}
+
+console.log(factorial_for(9));
+
+console.log("While");
+
+// 1. a. Create a factorial_while function that uses a while loop but otherwise
+//    returns the same results as the factorial_for function above.
+//    b. call your factorial_while function passing in the number 9 as the argument
+//    and log the result to the console.
+function factorial_while(n) {
+  let total = 1;
+  let i = 1;
+  while(i <= n) {
+    total *= i;
+    i++;
+
+  }
+  return total;
+}
+console.log(factorial_while(9));
+
+
+//----------//
+// Do-While //
+//----------//
+console.log("Do-While");
+
+// 1. a. Create a factorial_do_while function that uses a do while loop but otherwise
+//    returns the same results as the factorial_for function above.
+//    b. call your factorial_do_while function passing in the number 9 as the argument
+//    and log the result to the console.
+function factorial_do_while(n) {
+  let i = 1;
+  let total = 1;
+  do {
+    total *= i;
+    i++;
+  } while (i <= n);
+  return total;
+
+}
+console.log(factorial_do_while(9));
+
+</script>
+</head>
+<body>
+  See console!
+</body>
+</html>
