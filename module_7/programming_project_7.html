@@ -1,0 +1,100 @@
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CMPS 162: Module 7 Programming Project</title>
+<style>* { font-family: monospace; }</style>
+<script>
+
+//-----------------//
+// Browser Version //
+//-----------------//
+console.log("Browser Version");
+
+// 1. Complete the implementation and show the current verstion of your browser
+let browserVersion = navigator.appVersion;
+console.log(browserVersion);
+// alert(browserVersion);
+
+// 2. Paste the output that you receive from the first question
+
+//-----5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36-----
+
+//-----------------//
+// Windows //
+//-----------------//
+console.log("Windows");
+
+// 1. Create a way to open a window with the height & width of 500 each
+  function openWin() {
+    myWindow = window.open("", "", "width=500, height=500"); 
+  }
+  /* ------------------------------------------------------
+    See HTML body below for button
+    ------------------------------------------------------ */
+// 2. Create a way to close a window
+    function closeWin() {
+    myWindow.close();
+        
+    }
+  /* ------------------------------------------------------
+    See HTML body below for button
+    ------------------------------------------------------ */
+
+// 3. Create a button to open a new window with preferences of a toolbar, location is true, no directories, no status
+//.   menubar, scrollbars, not resizable, height/width is 400
+function openDiffWin() {
+    myWindow = window.open("", "", "toolbar=yes, location=yes, directories=no, status=no, menubar=yes, scrollbars=yes, resizable=no, width=400, height=400");
+}
+  /* ------------------------------------------------------
+    See HTML body below for button
+    ------------------------------------------------------ */
+
+//-----------------//
+// History URLS //
+//-----------------//
+console.log("History");
+  
+// 1. Create a function that provides a way to obtain the history of pages visited previously
+    function history() {
+        document.getElementById("history").innerHTML = history.length;
+    }
+    /* ------------------------------------------------------
+    See HTML body below for p tag and button
+    ------------------------------------------------------ */
+    
+  
+
+// 2. Run in Live Server and copy the URL, and then visit www.yahoo.com, www.jeffreyjseaman.com, www.pkwinery.com, www.libertypolespirits.com, www.espn.com
+// Provide how many URLs you have in your history
+
+  
+
+  //-----------------//
+// Cookies //
+//-----------------//
+console.log("Cookies");
+  
+// 1. Create a way to identify if cookies are enabled
+  
+// 2. Create a way to set the cookie
+  
+// 3. Create a way to obtain the cookie and display it on the screen
+
+
+</script>
+</head>
+<body>
+  See console!
+  <button type="button" onclick="openWin()">Open Window</button>
+
+  <button type="button" onclick="closeWin()">Close Window</button>
+
+  <button type="button" onclick="openDiffWin()">Open Window 2</button>
+
+  <button type="button" onclick="history()">History</button>
+
+  <p id="history"></p>
+</body>
+</html>
