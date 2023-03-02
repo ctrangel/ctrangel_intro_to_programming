@@ -78,14 +78,7 @@ console.log("History");
 console.log("Cookies");
   
 // 1. Create a way to identify if cookies are enabled
-    function cookieEnabled() {
-        if (navigator.cookieEnabled == true) {
-            console.log("Cookies are enabled");
-        } else {
-            console.log("Cookies are not enabled");
-        }
-    }
-    function validateCookie() {
+    function checkCookie() {
         let user = getCookie("username");
         if (user != "") {
         alert("Welcome again " + user);
@@ -98,35 +91,39 @@ console.log("Cookies");
     }
   
 // 2. Create a way to set the cookie
-    function setCookie(cname, cvalue, exdays) {
-        let d = new Date();
-        d.setTime(d.getTime() + (exdays*24*60*60*1000));
-        let expires = "expires="+ d.toUTCString();
-        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+
+    function setCookie(cname,cvalue,exdays) {
+        const d = new Date();
+        d.setDate(d.getTime() + (exdays*24*60*60*1000));
+        let expires = "expires=" + d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path/"
     }
   
 // 3. Create a way to obtain the cookie and display it on the screen
+
     function getCookie(cname) {
         let name = cname + "=";
         let decodedCookie = decodeURIComponent(document.cookie);
         let ca = decodedCookie.split(';');
-        for(let i = 0; i <ca.length; i++) {
+        for (let i = 0; i < ca.length; i++) {
             let c = ca[i];
             while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-            document.getElementById("cookie").innerHTML = getCookie("username");
+                c = c.substring(1);
             }
             if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
+                return c.substring(name.length, c.length);
+
             }
         }
-        
+        return "";
     }
+        
+ 
 
 
 </script>
 </head>
-<body  onload="cookieEnabled(), validateCookie(), setCookie()">
+<body  onload="checkCookie()">
   See console!
   <button type="button" onclick="openWin()">Open Window</button>
 
@@ -138,8 +135,5 @@ console.log("Cookies");
 
   <p id="history"></p>
 
-  <button type="button" onclick="getCookie()">Get the cookie</button>
-
-  <p id="cookie"></p>
 </body>
 </html>
