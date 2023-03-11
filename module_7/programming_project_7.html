@@ -57,9 +57,9 @@ function openDiffWin() {
 console.log("History");
   
 // 1. Create a function that provides a way to obtain the history of pages visited previously
-    function history() {
-        document.getElementById("history").innerHTML = history.length;
-    }
+    function myHistory() {
+            document.getElementById("history").innerHTML = history.length;
+        }
     /* ------------------------------------------------------
     See HTML body below for p tag and button
     ------------------------------------------------------ */
@@ -93,7 +93,7 @@ console.log("Cookies");
 
   <button type="button" onclick="openDiffWin()">Open Window 2</button>
 
-  <button type="button" onclick="history()">History</button>
+  <button type="button" onclick="myHistory()">History</button>
 
   <p id="history"></p>
 </body>
