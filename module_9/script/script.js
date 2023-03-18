@@ -34,7 +34,9 @@ form.addEventListener("submit", (e) => {
     e.preventDefault();
   }
 
- /* I had a window.location.href here to take user to the thank you page if everything was good but it would not work so I ended up 
+  /* I had a window.location.href here to take user to the thank you page if everything was good but it would not work so I ended up 
     just putting an action on the form element so that way it took the user to the page on submission, and logically the form would not
     submit if one of these condiditions were not met. This took me way while to figure out as well. */
 });
+
+
