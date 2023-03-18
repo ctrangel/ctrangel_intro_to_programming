@@ -16,6 +16,7 @@ body {
 
 #container {
   background-color: #ffffff;
+  filter: brightness(85%);
   border: 12px solid #f7ca09;
   border-radius: 20px 20px 20px 20px;
   margin: 0px auto;
