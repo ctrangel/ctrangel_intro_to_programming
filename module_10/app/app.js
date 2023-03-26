@@ -189,45 +189,104 @@ function pickUp() {
 
   // let choice = prompt("Please select your items from the list above.");
   if (choice == 1) {
-    theChosen(1);
+    theChosenPickUp(1);
   }
   if (choice == 2) {
-    theChosen(2);
+    theChosenPickUp(2);
   }
   if (choice == 3) {
-    theChosen(3);
+    theChosenPickUp(3);
   }
   if (choice == 4) {
-    theChosen(4);
+    theChosenPickUp(4);
   }
   if (choice == 5) {
-    theChosen(5);
+    theChosenPickUp(5);
   }
   if (choice == 6) {
-    theChosen(6);
+    theChosenPickUp(6);
   }
   if (choice == 7) {
-    theChosen(7);
+    theChosenPickUp(7);
   }
   if (choice == 8) {
-    theChosen(8);
+    theChosenPickUp(8);
   }
   if (choice == 9) {
-    theChosen(9);
+    theChosenPickUp(9);
   }
   if (choice == 10) {
-    theChosen(10);
+    theChosenPickUp(10);
   }
   if (choice == 11) {
-    theChosen(11);
+    theChosenPickUp(11);
   }
   if (choice == 12) {
-    theChosen(12);
+    theChosenPickUp(12);
+  }
+  
+}
+function delivery() {
+  console.log("Please select an item from the list below.");
+
+  let display = [];
+  for (let key in listOfItems) {
+    if (listOfItems.hasOwnProperty(key) && price.hasOwnProperty(key)) {
+      // console.log(key + " " + listOfItems[key] + " " + price[key]);
+      // alert(key + " " + listOfItems[key] + " " + price[key]);
+      display.push(key + " | " + listOfItems[key] + " | " + price[key] + "\n");
+    }
+  }
+  let choice = prompt(
+    "Please select an item from the list below. \n" + display
+  );
+  // console.log(display);
+  // alert(display);
+
+  // let choice = prompt("Please select your items from the list above.");
+  if (choice == 1) {
+    alert("sorry this item is only available for pick up");
+    delivery();
+  }
+  if (choice == 2) {
+    alert("sorry this item is only available for pick up");
+    delivery();
+  }
+  if (choice == 3) {
+    theChosenDelivery(3);
+  }
+  if (choice == 4) {
+    theChosenDelivery(4);
+  }
+  if (choice == 5) {
+    theChosenDelivery(5);
+  }
+  if (choice == 6) {
+    theChosenDelivery(6);
+  }
+  if (choice == 7) {
+    theChosenDelivery(7);
+  }
+  if (choice == 8) {
+    theChosenDelivery(8);
+  }
+  if (choice == 9) {
+    theChosenDelivery(9);
+  }
+  if (choice == 10) {
+    alert("sorry this item is only available for pick up");
+    delivery();
+  }
+  if (choice == 11) {
+    theChosenDelivery(11);
+  }
+  if (choice == 12) {
+    alert("sorry this item is only available for pick up");
+    delivery();
   }
 }
-function delivery() {}
 
-function theChosen(item) {
+function theChosenPickUp(item) {
   cart.push(listOfItems[item]);
   total += price[item];
   console.log("You have added " + listOfItems[item] + " to your cart.");
@@ -254,12 +313,12 @@ function theChosen(item) {
     if (choice == 1) {
       console.log("Thank you for your generosity! Have a wonderful day!");
       alert("Thank you for your generosity! Have a wonderful day!");
-      checkOut();
+      checkOutOption(1);
 
     } else if (choice == 2) {
       console.log("I hope you enjoy your food sir.");
       alert("I hope you enjoy your food sir.");
-      checkOut();
+      checkOutOption(1);
     }
   } else {
     console.log("Invalid choice.");
@@ -267,10 +326,62 @@ function theChosen(item) {
   }
 }
 
-function checkOut() {
+function theChosenDelivery(item) {
+  cart.push(listOfItems[item]);
+  total += price[item];
+  console.log("You have added " + listOfItems[item] + " to your cart.");
+  alert("You have added " + listOfItems[item] + " to your cart.");
+  console.log("Your cart total is $" + total);
+  alert("Your cart total is $" + total);
+  let choice = prompt(
+    "Do you fancy another item my liege? \r 1. Indubitably \r 2. That is all for now, my good sir"
+  );
+  if (choice == 1) {
+    delivery();
+  } else if (choice == 2) {
+    console.log("Your cart total is $" + total);
+    alert("Your cart total is $" + total);
+    console.log("Thank you for shopping with us!");
+    alert(
+      "Thank you for shopping with us! We had a wonderful time breaking our backs to provide you with the utmost servitude under the guise of minimal wage."
+    );
+    console.log("is there anything else we can do for you?");
+    alert("is there anything else we can do for you?");
+    let choice = prompt(
+      "\r 1. Yes, I would like to tip you \r 2. No, I i'll be on my way (consequences will follow)"
+    );
+    if (choice == 1) {
+      console.log("Thank you for your generosity! Have a wonderful day!");
+      alert("Thank you for your generosity! Have a wonderful day!");
+      checkOutOption(2);
+
+    } else if (choice == 2) {
+      console.log("I hope you enjoy your food sir.");
+      alert("I hope you enjoy your food sir.");
+      checkOutOption(2);
+    }
+  } else {
+    console.log("Invalid choice.");
+    return false;
+  }
+}
+function checkOutOption(option) {
+  if (option == 1) {
+    checkOut(pickUp);
+  } else if (option == 2) {
+    checkOut(delivery);
+  }
+}
+function checkOut(choice) {
+  let option = "";
+  if (choice == pickUp) {
+     option = "pick up";
+  } else if (choice == delivery) {
+     option = "delivery";
+  }
   let actualTotal = total * 1.07 + 9.99;
-  console.log("Your cart total is $" + actualTotal + "\n" + "Your cart contains: " + cart + "\n" + "*after taxes and delivery fee*");
-  alert("Your cart total is $" + actualTotal + "\n" + "Your cart contains: " + cart + "\n" + "*after taxes and delivery fee*");
+  console.log("Confirmed for " + option + "\n" + "Your cart total is $" + actualTotal + "\n" + "Your cart contains: " + cart + "\n" + "*after taxes and delivery fee*");
+  alert("Confirmed for " + option + "\n" + "Your cart total is $" + actualTotal + "\n" + "Your cart contains: " + cart + "\n" + "*after taxes and delivery fee*");
   console.log("*after taxes and delivery fee*")
   alert("Thank you for shopping with us!");
 }
@@ -290,4 +401,4 @@ function main() {
 }
 
 // start app
-pickUp();
+delivery();
