@@ -25,6 +25,11 @@ function Account(
 function createAccount() {
   console.log("Please enter your information to create an account.");
   let firstName = prompt("First Name: ");
+  if (firstName == null || firstName == "") {
+    console.log("Invalid first name.");
+    alert("Invalid first name.");
+    return false;
+  } 
   let lastName = prompt("Last Name: ");
   let address1 = prompt("Address 1: ");
   let address2 = prompt("Address 2: ");
