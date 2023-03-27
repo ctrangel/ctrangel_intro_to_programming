@@ -22,65 +22,96 @@ function Account(
   this.password = password;
 }
 
-function createAccount() {
-  console.log("Please enter your information to create an account.");
-  let firstName = prompt("First Name: ");
-  if (firstName == null || firstName == "") {
-    console.log("Invalid first name.");
-    alert("Invalid first name.");
-    return false;
-  } 
-  let lastName = prompt("Last Name: ");
-  let address1 = prompt("Address 1: ");
-  let address2 = prompt("Address 2: ");
-  let city = prompt("City: ");
-  let state = prompt("State: ");
-  let zip = prompt("Zip: ");
-  let username = prompt("Username: ");
-  let password = prompt("Password: ");
-  let newUser = new Account(
-    firstName,
-    lastName,
-    address1,
-    address2,
-    city,
-    state,
-    zip,
-    username,
-    password
-  );
-  console.log("Account created!");
+let errorLog = []; // The surmountable history of user errors will be scribed in these scrolls, hopefully
 
-  console.log("please verify all information is correct before proceeding");
-
-  console.log(displayAccount(newUser));
-  alert(displayAccount(newUser));
-
-  let choice = prompt(
-    "Is this information correct? \r 1. Looks good to me \r 2. Sorry I must've made a mistake, groceries make me nervous"
-  );
-  if (choice == 1) {
-    console.log("Thank you for creating an account with us!");
-    alert("Thank you for creating an account with us!");
-    console.log(saveUser(newUser));
-    login();
-  } else if (choice == 2) {
-    console.log("Please re-enter your information.");
-    createAccount();
-  } else {
-    console.log("Invalid choice.");
-    return false;
-  }
-  //hopefully this works
+function displayErrorLog() {
+  console.log(errorLog);
 }
+
+function createAccount() {
+  try {
+    console.log("Please enter your information to create an account.");
+
+    let firstName = prompt("First Name: ");
+    if (firstName == "") {
+      alert("Please enter a first name.");
+      console.log("Please enter a first name.");
+      throw new Error("Invalid first name");
+    }
+    if (isNaN(firstName) == false) {
+      alert("No numbers por favor.");
+      console.log("No numbers por favor.");
+      throw new Error("First name cannot contain numbers");
+    }
+
+    let lastName = prompt("Last Name: ");
+    if (lastName == "") {
+      alert("Please enter a last name.");
+      console.log("Please enter a last name.");
+      throw new Error("Invalid last name");
+    }
+    if (isNaN(lastName) == false) {
+      alert("No numbers por favor.");
+      console.log("No numbers por favor.");
+      throw new Error("Last name cannot contain numbers");
+    }
+
+    let address1 = prompt("Address 1: ");
+    let address2 = prompt("Address 2: ");
+    let city = prompt("City: ");
+    let state = prompt("State: ");
+    let zip = prompt("Zip: ");
+    let username = prompt("Username: ");
+    let password = prompt("Password: ");
+    let newUser = new Account(
+      firstName,
+      lastName,
+      address1,
+      address2,
+      city,
+      state,
+      zip,
+      username,
+      password
+    );
+    console.log("Account created!");
+
+    console.log("please verify all information is correct before proceeding");
+
+    console.log(displayAccount(newUser));
+    alert("Please review your information: " + "\n" + displayAccount(newUser));
+
+    let choice = prompt(
+      "Is this information correct? \r 1. Looks good to me \r 2. Sorry I must've made a mistake, groceries make me nervous"
+    );
+    if (choice == 1) {
+      console.log("Thank you for creating an account with us!");
+      alert("Thank you for creating an account with us!");
+      console.log(saveUser(newUser));
+      login();
+    } else if (choice == 2) {
+      console.log("Please re-enter your information.");
+      createAccount();
+    } else {
+      console.log("Invalid choice.");
+      return false;
+    }
+  } catch (error) {
+    console.error(error);
+    errorLog.push(error);
+    createAccount();
+  }
+}
+
 //display account info
 function displayAccount(obj) {
   let output = [];
   for (let key in obj) {
-    output.push(`${key}: ${obj[key]}`);
+    output.push(`${key}: ${obj[key]} \n`);
   }
   return output;
 }
+//save user info
 function saveUser(obj) {
   let user = JSON.stringify(obj);
 
@@ -113,7 +144,6 @@ function login() {
       let choice = prompt(
         "\r 1. Hell ya I ***** love groceries \r 2. No I do not want to experience the joy of grocery shopping"
       );
-
       if (choice == 1) {
         createAccount();
       } else if (choice == 2) {
@@ -229,7 +259,6 @@ function pickUp() {
   if (choice == 12) {
     theChosenPickUp(12);
   }
-  
 }
 function delivery() {
   console.log("Please select an item from the list below.");
@@ -307,19 +336,16 @@ function theChosenPickUp(item) {
     console.log("Your cart total is $" + total);
     alert("Your cart total is $" + total);
     console.log("Thank you for shopping with us!");
-    alert(
-      "Thank you for shopping with us! We had a wonderful time breaking our backs to provide you with the utmost servitude under the guise of minimal wage."
-    );
+    alert("Thank you for grocering with us.");
     console.log("is there anything else we can do for you?");
     alert("is there anything else we can do for you?");
     let choice = prompt(
-      "\r 1. Yes, I would like to tip you \r 2. No, I i'll be on my way (consequences will follow)"
+      "\r 1. Yes, I would like to tip you \r 2. No, I'll be on my way (consequences will follow)"
     );
     if (choice == 1) {
       console.log("Thank you for your generosity! Have a wonderful day!");
       alert("Thank you for your generosity! Have a wonderful day!");
       checkOutOption(1);
-
     } else if (choice == 2) {
       console.log("I hope you enjoy your food sir.");
       alert("I hope you enjoy your food sir.");
@@ -347,19 +373,16 @@ function theChosenDelivery(item) {
     console.log("Your cart total is $" + total);
     alert("Your cart total is $" + total);
     console.log("Thank you for shopping with us!");
-    alert(
-      "Thank you for shopping with us! We had a wonderful time breaking our backs to provide you with the utmost servitude under the guise of minimal wage."
-    );
+    alert("Thank you for grocering with us.");
     console.log("is there anything else we can do for you?");
     alert("is there anything else we can do for you?");
     let choice = prompt(
-      "\r 1. Yes, I would like to tip you \r 2. No, I i'll be on my way (consequences will follow)"
+      "\r 1. Yes, I would like to tip you \r 2. No, I'll be on my way (consequences will follow)"
     );
     if (choice == 1) {
       console.log("Thank you for your generosity! Have a wonderful day!");
       alert("Thank you for your generosity! Have a wonderful day!");
       checkOutOption(2);
-
     } else if (choice == 2) {
       console.log("I hope you enjoy your food sir.");
       alert("I hope you enjoy your food sir.");
@@ -380,15 +403,82 @@ function checkOutOption(option) {
 function checkOut(choice) {
   let option = "";
   if (choice == pickUp) {
-     option = "pick up";
+    option = "pick up";
   } else if (choice == delivery) {
-     option = "delivery";
+    option = "delivery";
   }
   let actualTotal = total * 1.07 + 9.99;
-  console.log("Confirmed for " + option + "\n" + "Your cart total is $" + actualTotal + "\n" + "Your cart contains: " + cart + "\n" + "*after taxes and delivery fee*");
-  alert("Confirmed for " + option + "\n" + "Your cart total is $" + actualTotal + "\n" + "Your cart contains: " + cart + "\n" + "*after taxes and delivery fee*");
-  console.log("*after taxes and delivery fee*")
-  alert("Thank you for shopping with us!");
+  console.log(
+    "Confirmed for " +
+      option +
+      "\n" +
+      "Your cart total is $" +
+      actualTotal.toFixed(2) +
+      "\n" +
+      "Your cart contains: " +
+      cart +
+      "\n" +
+      "*after taxes and delivery fee*"
+  );
+  alert(
+    "Confirmed for " +
+      option +
+      "\n" +
+      "Your cart total is $" +
+      actualTotal.toFixed(2) +
+      "\n" +
+      "Your cart contains: " +
+      cart +
+      "\n" +
+      "*after taxes and delivery fee*"
+  );
+  let payment = prompt(
+    "How would you like to pay? \r 1. Venmo \r 2. Credit Card \r 3. Android/Apple Pay"
+  );
+  if (payment == 1) {
+    let venmoAlert = alert(
+      "Payment info obtained, please hit ok to process payment"
+    );
+    setTimeout(function () {
+      window.clearInterval(venmoAlert);
+      console.log(
+        "Payment successful!, no need to worry we magically obtained your venmo info for you, thanks for grocering with us"
+      );
+      alert(
+        "Payment successful!, no need to worry we magically obtained your venmo info for you, thanks for grocering with us"
+      );
+    }, 2000);
+  } else if (payment == 2) {
+    let creditCardAlert = alert(
+      "Payment info obtained, please hit ok to process payment"
+    );
+    setTimeout(function () {
+      window.clearInterval(creditCardAlert);
+      console.log(
+        "Payment successful!, no need to worry we magically obtained your credit card info for you, we are in your walls, thanks for grocering with us"
+      );
+      alert(
+        "Payment successful!, no need to worry we magically obtained your credit card info for you, we are in your walls, thanks for grocering with us"
+      );
+    }, 2000);
+  } else if (payment == 3) {
+    let applePayAlert = alert(
+      "Payment info obtained, please hit ok to process payment"
+    );
+    setTimeout(function () {
+      window.clearInterval(applePayAlert);
+      console.log(
+        "Payment successful!, no need to worry we magically obtained your apple pay info for you, thanks for grocering with us"
+      );
+      alert(
+        "Payment successful!, no need to worry we magically obtained your apple pay info for you, thanks for grocering with us"
+      );
+    }, 2000);
+  } else {
+    console.log("Invalid choice.");
+    alert("Invalid choice.");
+    return false;
+  }
 }
 
 function main() {
@@ -406,4 +496,3 @@ function main() {
 }
 
 // start app
-delivery();
