@@ -66,11 +66,11 @@ function createAccount() {
     let city = prompt("City: ");
     let state = prompt("State: ");
     let zip = prompt("Zip: ");
-      if (zip.length != 5) {
-        alert("Please enter a valid zip code.");
-        console.log("Please enter a valid zip code.");
-        throw new Error("Invalid zip code");
-      }
+    if (zip.length != 5) {
+      alert("Please enter a valid zip code.");
+      console.log("Please enter a valid zip code.");
+      throw new Error("Invalid zip code");
+    }
     let username = prompt("Username: ");
     let password = prompt("Password: ");
     let newUser = new Account(
@@ -130,38 +130,46 @@ function saveUser(obj) {
 }
 
 function login() {
-  console.log("Please enter your username and password to login.");
-  let username = prompt("Username: ");
-  let password = prompt("Password: ");
-  let user = JSON.parse(localStorage.getItem("user")); // This took me way too long to realize I had to actually get the item from local storage to use it
-  if (username == user.username && password == user.password) {
-    console.log("Login successful! Welcome " + username);
-    alert("Login successful! Welcome " + username);
-    pickUpOrDelivery();
-  } else {
-    console.log("Login failed.");
-    alert("Login failed.");
-    console.log("Are you sure you remember your username and password?");
-    alert("Are you sure you remember your username and password?");
-    let choice = prompt("\r 1. Yes I am most certain of it \r 2. Perhaps not");
-    if (choice == 1) {
-      console.log("Please try again.");
-      alert("Please try again.");
-      login();
-    } else if (choice == 2) {
-      console.log("Would you like to sign up?");
-      alert("Would you like to sign up?");
+  try {
+    console.log("Please enter your username and password to login.");
+    let username = prompt("Username: ");
+    let password = prompt("Password: ");
+    let user = JSON.parse(localStorage.getItem("user")); // This took me way too long to realize I had to actually get the item from local storage to use it
+    if (username == user.username && password == user.password) {
+      console.log("Login successful! Welcome " + username);
+      alert("Login successful! Welcome " + username);
+      pickUpOrDelivery();
+    } else {
+      console.log("Login failed.");
+      alert("Login failed.");
+      console.log("Are you sure you remember your username and password?");
+      alert("Are you sure you remember your username and password?");
       let choice = prompt(
-        "\r 1. Hell ya I ***** love groceries \r 2. No I do not want to experience the joy of grocery shopping"
+        "\r 1. Yes I am most certain of it \r 2. Perhaps not"
       );
       if (choice == 1) {
-        createAccount();
+        console.log("Please try again.");
+        alert("Please try again.");
+        login();
       } else if (choice == 2) {
-        console.log("So be it.");
-        alert("So be it.");
-        return false;
+        console.log("Would you like to sign up?");
+        alert("Would you like to sign up?");
+        let choice = prompt(
+          "\r 1. Hell ya I ***** love groceries \r 2. No I do not want to experience the joy of grocery shopping"
+        );
+        if (choice == 1) {
+          createAccount();
+        } else if (choice == 2) {
+          console.log("So be it.");
+          alert("So be it.");
+          return false;
+        }
       }
     }
+  } catch (error) {
+    console.error(error);
+    errorLog.push(error);
+    login();
   }
 }
 
