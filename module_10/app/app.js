@@ -22,7 +22,7 @@ function Account(
   this.password = password;
 }
 
-let errorLog = []; // The surmountable history of user errors will be scribed in these scrolls, hopefully
+let errorLog = []; // The surmountable history of user errors will be scribed in these scrolls, hopefully UPDATE: it does work
 
 function displayErrorLog() {
   console.log(errorLog);
@@ -57,10 +57,20 @@ function createAccount() {
     }
 
     let address1 = prompt("Address 1: ");
-    let address2 = prompt("Address 2: ");
+    if (address1 == "") {
+      alert("Please enter an address.");
+      console.log("Please enter an address.");
+      throw new Error("Invalid address");
+    }
+    let address2 = prompt("Address 2: (leave blank if none)");
     let city = prompt("City: ");
     let state = prompt("State: ");
     let zip = prompt("Zip: ");
+      if (zip.length != 5) {
+        alert("Please enter a valid zip code.");
+        console.log("Please enter a valid zip code.");
+        throw new Error("Invalid zip code");
+      }
     let username = prompt("Username: ");
     let password = prompt("Password: ");
     let newUser = new Account(
