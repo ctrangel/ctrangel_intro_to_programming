@@ -1,0 +1,52 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Lato', sans-serif;
+}
+
+h1 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+.app-bar {
+    width: 100%;
+    background-color: #f4e04d;
+}
+
+.setup-complete {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 1em;
+    background-color: #faf4f4;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 2em;
+
+}
+
+.button {
+    margin: 1em;
+    height: 50px;
+    font-family: 'Courier New', Courier, monospace;
+
+
+}
+
+#btn-notify {
+    background-color: cyan;
+    color: white;
+    padding: 1em;
+    cursor: pointer;
+    font-size: 1em;
+    border-radius: 10px;
+    display: none;
+}
